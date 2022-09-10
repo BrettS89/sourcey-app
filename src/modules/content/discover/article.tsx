@@ -64,7 +64,7 @@ const Article: React.FC<Props> = ({ article, selectArticle, playlistItemId, open
               {article.title}
             </Typography>
             <Typography styles={styles.from}>
-              {article.from}
+              {article.year} - {article.from}
             </Typography>
             <Typography styles={styles.duration}>
               {article.audioFile.meta.duration}

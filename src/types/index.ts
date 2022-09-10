@@ -40,6 +40,7 @@ export interface Article extends Resource {
   title: string;
   officialTitle: string;
   description: string;
+  year: string;
   file?: File;
   imageFile: File;
   audioFile: File;
