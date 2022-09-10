@@ -3,11 +3,19 @@ import feathers from '@feathersjs/feathers';
 import rest from '@feathersjs/rest-client';
 import axios from 'axios';
 
-const url = 'http://localhost:3030';
+const getUrl = (env: 'local' | 'dev' | 'prod') => {
+  switch(env) {
+    case 'local':
+      return 'http://localhost:3030';
+
+    case 'dev':
+      return 'https://bls.ngrok.io/sourcey-api-dev';
+  }
+}
 
 const app = feathers();
 
-const restClient = rest(url);
+const restClient = rest(getUrl('dev'));
 
 app.configure(restClient.axios(axios));
 

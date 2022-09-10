@@ -1,13 +1,13 @@
 {
   "expo": {
     "name": "source-app",
-    "slug": "source-app",
+    "slug": "source-app-dev",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/sourcey-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/sourcey-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
