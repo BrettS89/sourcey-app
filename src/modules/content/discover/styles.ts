@@ -14,15 +14,15 @@ export default StyleSheet.create({
     paddingVertical: 10,
   },
   articleImage: {
-    height: 90,
-    width: 90,
+    height: 80,
+    width: 80,
     marginRight: 10,
   },
   defaultImageContainer: {
-    height: 90,
-    width: 90,
+    height: 80,
+    width: 80,
     marginRight: 10,
-    borderRadius: 6,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'lightgray'
