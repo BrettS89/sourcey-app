@@ -19,7 +19,7 @@ const Welcome: React.FC<Navigation> = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
         <Typography styles={styles.logo}>
-          Artica 
+          Sourcey 
         </Typography>
         <Typography styles={styles.logo2}>
           .
