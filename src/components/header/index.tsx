@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import Constants from 'expo-constants';
 import colors from '../../shared/colors';
 import Typography from '../typography';
 import BackButton from '../back-button';
@@ -13,6 +13,10 @@ interface Props {
 
 const Header: React.FC<Props> = ({ title, type, addPlaylist }) => {
   const alignCenter = addPlaylist ? { alignItems: 'center' } : {}
+  
+  const getHeight = () => {
+    return Constants.statusBarHeight + 45;
+  }
 
   const renderTitle = (
     <Typography styles={styles.title}>
@@ -21,7 +25,7 @@ const Header: React.FC<Props> = ({ title, type, addPlaylist }) => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { height: getHeight() }]}>
       {/*@ts-ignore*/}
       <View style={{ flexDirection: 'row', paddingHorizontal: 15, justifyContent: 'space-between', ...alignCenter }}>
       {type === 'back' && <BackButton title={title} />}
@@ -35,7 +39,7 @@ const Header: React.FC<Props> = ({ title, type, addPlaylist }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.main,
-    height: 92,
+    // height: 92,
     paddingHorizontal: 15,
     justifyContent: 'center',
   },

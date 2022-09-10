@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal, SafeAreaView, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { View, Modal, SafeAreaView, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { useSelector, useDispatch } from 'react-redux';
 import Ionicon from '@expo/vector-icons/Ionicons';
@@ -71,7 +71,7 @@ const PlayerModal = () => {
       <View style={styles.defaultImage}>
         <FontAwesome5
           name='headphones-alt'
-          size={110}
+          size={60}
           color='darkgrey'
         />
       </View>
@@ -110,62 +110,77 @@ const PlayerModal = () => {
     >
       <SafeAreaView style={styles.container}>
         <View style={styles.dismissView}>
-          <TouchableOpacity onPress={closeModal}>
-            <Typography
-              styles={styles.text}
-            >
-              Dismiss
-            </Typography>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.mainView}>
 
-          {renderImage()}
 
-          <View style={{ paddingHorizontal: 30, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={styles.articleContent}>
+            {renderImage()}
+            <View style={{ flexShrink: 1, }}>
+              <Typography styles={styles.title}>
+                {player.article?.title}
+              </Typography>
+              <Typography styles={styles.from}>
+                {player.article?.year} - {player.article?.from}
+              </Typography>
+              <Typography styles={styles.from}>
+                {player.article?.audioFile.meta.duration}
+              </Typography>
+            </View>
+          </View>
+
+          <View style={{ flexShrink: 1, width: '100%', paddingHorizontal: 15, }}>
             <Typography styles={styles.title}>
-              {player.article?.title}
-            </Typography>
-
-            <Typography styles={styles.officialTitle}>
-              {player.article?.officialTitle}
+              Original article
             </Typography>
             <Typography styles={styles.from}>
-              {player.article?.from}
+              {player.article?.officialTitle}
             </Typography>
+
+            <Typography styles={styles.description}>
+              Description
+            </Typography>
+            <ScrollView style={styles.scrollView}>
+              <Typography styles={styles.from}>
+                {player.article?.description}
+              </Typography>
+            </ScrollView>
+
           </View>
 
 
-          <View style={styles.trackingView}>
-          <Slider
-            value={calculateSeekBar()}
-            onValueChange={(value) => {
-              if (!player.duration) return;
-              const time = value * player.duration;
-              setSeekingValue(time);
-            }}
-            onSlidingStart={() => {
-              if (player.isPlaying) {
-                toggleIsPlaying(false);
-                setIsPlaying(true);
-              } else {
-                setIsPlaying(false);
-              }
-            }}
-            onSlidingComplete={async () => {
-              await audio.setPositionAsync(seekingValue);
-              dispatch(setPlaybackProgress({ duration: player.duration!, progress: seekingValue }))
+        </View>
 
-              if (isPlaying) {
-                toggleIsPlaying(true);
-              }
-            }}
-            style={{ width: width - 60, height: 40 }}
-            minimumValue={0}
-            maximumValue={1}
-            minimumTrackTintColor={colors.main}
-            maximumTrackTintColor={colors.background}
-          />
+        <View style={styles.mainView}>
+
+          <View style={styles.trackingView}>
+            <Slider
+              value={calculateSeekBar()}
+              onValueChange={(value) => {
+                if (!player.duration) return;
+                const time = value * player.duration;
+                setSeekingValue(time);
+              }}
+              onSlidingStart={() => {
+                if (player.isPlaying) {
+                  toggleIsPlaying(false);
+                  setIsPlaying(true);
+                } else {
+                  setIsPlaying(false);
+                }
+              }}
+              onSlidingComplete={async () => {
+                await audio.setPositionAsync(seekingValue);
+                dispatch(setPlaybackProgress({ duration: player.duration!, progress: seekingValue }))
+
+                if (isPlaying) {
+                  toggleIsPlaying(true);
+                }
+              }}
+              style={{ width: width - 60, height: 40 }}
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor={colors.main}
+              maximumTrackTintColor={colors.background}
+            />
           </View>
 
           <View style={styles.actionsView}>
@@ -191,10 +206,23 @@ const PlayerModal = () => {
           <View style={styles.addToPlaylistView}>
             <TouchableOpacity onPress={openAddToPlaylistModal}>
               <Typography styles={styles.addToPlaylistText}>
-                Add to playlist
+                + Add to playlist
               </Typography>
             </TouchableOpacity>
           </View>
+          
+
+            <TouchableOpacity onPress={closeModal} style={{ marginTop: 20 }}>
+              <Typography styles={{ color: colors.lightText }}>
+                Dismiss
+              </Typography>
+              {/* <Ionicon
+                name='chevron-down-circle-sharp'
+                size={35}
+                color={colors.lightText}
+              /> */}
+            </TouchableOpacity>
+
 
         </View>
         <AddToPlaylistModal />

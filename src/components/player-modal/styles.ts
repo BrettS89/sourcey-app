@@ -13,10 +13,9 @@ export default StyleSheet.create({
   },
   title: {
     color: colors.lightText,
-    fontSize: 20,
-    fontWeight: '900',
-    marginVertical: 10,
-    marginBottom: 7
+    fontSize: 16,
+    fontWeight: '800',
+    marginBottom: 5
   },
   officialTitle: {
     color: colors.lightText,
@@ -29,10 +28,29 @@ export default StyleSheet.create({
     color: colors.lightText,
     fontWeight: '500',
     fontSize: 16,
+    marginBottom: 5,
   },
   dismissView: {
     width: '100%',
     alignItems: 'center',
+    marginTop: 10,
+  },
+  articleContent: {
+    marginBottom: 20,
+    marginTop: 15,
+    paddingHorizontal: 15,
+    width: '100%',
+    flexDirection: 'row',
+  },
+  description: {
+    color: colors.lightText,
+    fontSize: 16,
+    fontWeight: '800',
+    marginBottom: 5,
+    marginTop: 15,
+  },
+  scrollView: {
+    height: 100,
   },
   mainView: {
     display: 'flex',
@@ -41,26 +59,28 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: 110,
-    height:110,
+    width: 80,
+    height: 80,
     borderRadius: 5,
+    marignRight: 10,
   },
   defaultImage: {
-    height: 175,
-    width: 175,
+    height: 80,
+    width: 80,
     borderRadius: 5,
+    marginRight: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'lightgray'
   },
   trackingView: {
-    marginVertical: 30,
+    marginVertical: 20,
   },
   actionsView: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 30
+    marginBottom: 15
   },
   playAction: {
     marginHorizontal: 40,
